@@ -1,17 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+---
+layout: default
+---
 
-{% include head.html %}
+<!-- Dark mode toggle button -->
+<button id="theme-toggle" onclick="toggleTheme()" title="切换暗夜模式">
+  <i class="fa fa-sun"></i>
+  <i class="fa fa-moon"></i>
+</button>
 
-<!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<script>
+// Check for saved theme preference or use system preference
+(function() {
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    document.body.setAttribute('data-theme', 'dark');
+  }
+})();
 
-    {% include nav.html %}
-    {% include search.html %}
+function toggleTheme() {
+  const body = document.body;
+  const currentTheme = body.getAttribute('data-theme');
+  if (currentTheme === 'dark') {
+    body.removeAttribute('data-theme');
+    localStorage.setItem('theme', 'light');
+  } else {
+    body.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+  }
+}
+</script>
 
-    {{ content }}
+{% include nav.html %}
+{% include search.html %}
 
-    {% include footer.html %}
+{{ content }}
+
+{% include footer.html %}
 
 
 <!-- Image to hack wechat -->
