@@ -1,0 +1,297 @@
+/* ===== 暗夜模式样式 ===== */
+
+/* CSS 变量定义 - 亮色主题（默认） */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f8f8;
+  --bg-card: #ffffff;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  --border-color: #e0e0e0;
+  --accent-color: #0085a1;
+  --accent-hover: #006v87;
+  --shadow-light: rgba(0, 0, 0, 0.08);
+  --shadow-medium: rgba(0, 0, 0, 0.12);
+  --nav-bg: rgba(255, 255, 255, 0.95);
+  --header-overlay: rgba(0, 0, 0, 0.4);
+  --tag-bg: #f0f0f0;
+  --tag-text: #666666;
+}
+
+/* 暗色主题 */
+body.dark-mode {
+  --bg-primary: #1a1a2e;
+  --bg-secondary: #16213e;
+  --bg-card: #0f3460;
+  --text-primary: #e8e8e8;
+  --text-secondary: #b8b8b8;
+  --text-muted: #888888;
+  --border-color: #2a2a4a;
+  --accent-color: #e94560;
+  --accent-hover: #ff6b6b;
+  --shadow-light: rgba(0, 0, 0, 0.3);
+  --shadow-medium: rgba(0, 0, 0, 0.5);
+  --nav-bg: rgba(26, 26, 46, 0.95);
+  --header-overlay: rgba(0, 0, 0, 0.6);
+  --tag-bg: #1e2a45;
+  --tag-text: #b8b8b8;
+}
+
+/* ===== 全局过渡动画 ===== */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ===== 导航栏暗色适配 ===== */
+.navbar-default {
+  background-color: var(--nav-bg);
+  border-color: var(--border-color);
+  transition: all 0.3s ease;
+}
+
+body.dark-mode .navbar-default {
+  background-color: var(--nav-bg);
+  border-color: var(--border-color);
+}
+
+.navbar-default .navbar-brand,
+.navbar-default .navbar-nav > li > a {
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+body.dark-mode .navbar-default .navbar-brand,
+body.dark-mode .navbar-default .navbar-nav > li > a {
+  color: var(--text-primary);
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: var(--accent-color);
+}
+
+/* ===== 主题切换按钮 ===== */
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  margin-left: 10px;
+  color: var(--text-primary);
+  font-size: 18px;
+  transition: all 0.3s ease;
+  border-radius: 20px;
+}
+
+.theme-toggle-btn:hover {
+  background-color: var(--tag-bg);
+  color: var(--accent-color);
+  transform: rotate(15deg);
+}
+
+body.dark-mode .theme-toggle-btn {
+  color: #ffd700;
+}
+
+body.dark-mode .theme-toggle-btn:hover {
+  color: #ffeb3b;
+}
+
+/* ===== 主页头部区域 ===== */
+.intro-header {
+  background-attachment: fixed;
+}
+
+.intro-header .header-mask {
+  background: var(--header-overlay);
+}
+
+.site-heading h1 {
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.site-heading .subheading {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ===== 文章卡片布局 ===== */
+.post-preview {
+  background-color: var(--bg-card);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px var(--shadow-light);
+  margin-bottom: 25px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.post-preview:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px var(--shadow-medium);
+}
+
+.post-preview a {
+  color: var(--text-primary);
+  text-decoration: none;
+  display: block;
+  padding: 25px;
+}
+
+.post-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--text-primary);
+}
+
+.post-subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-bottom: 15px;
+}
+
+.post-meta {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* ===== 分隔线 ===== */
+hr {
+  border-color: var(--border-color);
+  opacity: 0.5;
+}
+
+/* ===== 分页导航 ===== */
+.pager li > a,
+.pager li > span {
+  background-color: var(--bg-card);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.pager li > a:hover,
+.pager li > a:focus {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #ffffff;
+}
+
+/* ===== 标签样式 ===== */
+.tag {
+  background-color: var(--tag-bg);
+  color: var(--tag-text);
+  border-radius: 15px;
+  padding: 5px 15px;
+  font-size: 12px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  display: inline-block;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.tag:hover {
+  background-color: var(--accent-color);
+  color: #ffffff;
+}
+
+/* ===== 侧边栏 ===== */
+.sidebar-container {
+  background-color: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 30px;
+}
+
+.sidebar-container h5 {
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.sidebar-container a {
+  color: var(--text-secondary);
+}
+
+.sidebar-container a:hover {
+  color: var(--accent-color);
+}
+
+.short-about img {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px var(--shadow-light);
+}
+
+/* ===== 返回顶部按钮 ===== */
+#back-to-top a {
+  background: var(--accent-color);
+}
+
+#back-to-top a:hover {
+  background: var(--accent-hover);
+}
+
+/* ===== 页脚 ===== */
+footer {
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  padding: 40px 0;
+  margin-top: 50px;
+}
+
+footer a {
+  color: var(--accent-color);
+}
+
+footer .copyright {
+  color: var(--text-muted);
+}
+
+/* ===== 响应式适配 ===== */
+@media (max-width: 768px) {
+  .post-preview a {
+    padding: 20px;
+  }
+  
+  .post-title {
+    font-size: 20px;
+  }
+  
+  .site-heading h1 {
+    font-size: 32px;
+  }
+  
+  .theme-toggle-btn {
+    padding: 6px 10px;
+    font-size: 16px;
+  }
+}
+
+/* ===== 滚动条美化 ===== */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-hover);
+}
