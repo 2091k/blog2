@@ -1,0 +1,153 @@
+/* ===== Mac 窗口代码块整体容器 ===== */
+div.highlighter-rouge {
+  position: relative;
+  border-radius: 10px;
+  margin: 1.2rem auto;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 50%);
+  /* 限制代码块最大宽度，不会铺满页面变宽 */
+  max-width: 920px;
+  width: 100%;
+}
+
+/* Mac顶部标题栏 */
+div.highlighter-rouge::before {
+  content: "";
+  display: block;
+  background: #f1f1f1;
+  padding: 0 14px;
+  box-sizing: border-box;
+}
+
+/* 三个红绿灯圆点 */
+div.highlighter-rouge::after {
+  content: "";
+  position: absolute;
+  top: 7px;
+/*  left: 14px; */
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  box-shadow:
+    18px 0 0 #ff5f57,  /* 红 */
+    36px 0 0 #ffbd2e,  /* 黄 */
+    54px 0 0 #28ca42;  /* 绿 */
+}
+
+/* 代码区域留白，避开顶部标题栏，清除底部多余白边 */
+pre.highlight {
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0;
+  /* 滚动条配置 */
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+pre.highlight code {
+  display: block;
+  /* padding: 16px; */
+  padding-top: 12px !important;
+}
+
+/* 适配Rouge表格行号布局，消除底部留白、边框间隙 */
+pre.highlight .rouge-table {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-collapse: collapse;
+  border: none;
+}
+pre.highlight .rouge-table td {
+  border: none;
+  padding: 0;
+  vertical-align: top;
+}
+/* 左侧行号列，禁止选中 */
+pre.highlight .rouge-gutter {
+  user-select: none;
+  padding-right: 10px;
+}
+pre.highlight .rouge-gutter pre {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+/* 右侧代码内容列 */
+pre.highlight .rouge-code {
+  padding-left: 10px;
+}
+pre.highlight .rouge-code pre {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+/* 右上角复制按钮（Mac栏右侧） */
+pre.highlight .copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  padding: 3px 10px;
+  background: #dddddd24;
+  color: #d5d5d5;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  opacity: 0.75;
+  transition: 0.2s;
+  z-index: 10;
+}
+pre.highlight .copy-btn:hover {
+  opacity: 1;
+  background: #dddddd24;
+}
+pre.highlight .copy-btn.copied {
+  background: #28ca42;
+  color: #fff;
+}
+
+/* ===== 暗色模式适配 ===== */
+body.dark div.highlighter-rouge::before {
+  background: #2d2d2d;
+}
+body.dark pre.highlight .copy-btn {
+  background: #444;
+  color: #eee;
+}
+body.dark pre.highlight .copy-btn:hover {
+  background: #555;
+}
+
+/* 代码块横向滚动条美化 */
+/* 滚动条整体宽度/高度 */
+pre.highlight::-webkit-scrollbar {
+  height: 6px; /* 横向滚动条高度，越小越细 */
+}
+
+/* 滚动条轨道背景 */
+pre.highlight::-webkit-scrollbar-track {
+  background: #333;
+  border-radius: 3px;
+}
+
+/* 滚动滑块 */
+pre.highlight::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 3px;
+}
+
+/* 鼠标悬浮滑块加深 */
+pre.highlight::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+/* 浅色模式滚动条适配 */
+body:not(.dark) pre.highlight::-webkit-scrollbar-track {
+  background: #eee;
+}
+body:not(.dark) pre.highlight::-webkit-scrollbar-thumb {
+  background: #bbb;
+}
+body:not(.dark) pre.highlight::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
