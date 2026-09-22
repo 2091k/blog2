@@ -81,4 +81,24 @@ jQuery(document).ready(function($) {
                 }
             });
     }
+$(document).ready(function() {
+    var $toggle = document.querySelector('.theme-toggle');
+    if (!$toggle) return;
+    var $html = document.documentElement;
+    var setTheme = function (theme) {
+        $html.setAttribute('data-theme', theme);
+        try { localStorage.setItem('theme', theme); } catch (e) {}
+        $toggle.setAttribute('aria-label', theme === 'dark' ? '切换到亮色模式' : '切换到暗色模式');
+    };
+    var saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (e) {}
+    if (saved === 'dark' || saved === 'light') {
+        setTheme(saved);
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        setTheme('dark');
+    }
+    $toggle.addEventListener('click', function () {
+        var current = $html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        setTheme(current);
+    });
 });
