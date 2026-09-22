@@ -82,3 +82,44 @@ jQuery(document).ready(function($) {
             });
     }
 });
+
+// Dark Mode Toggle & Preference Persistence
+(function() {
+  const STORAGE_KEY = 'hux-theme';
+  const root = document.documentElement;
+
+  // 1. Initialize theme before first paint (avoids flash of wrong theme)
+  const saved = localStorage.getItem(STORAGE_KEY);
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initialTheme = saved || (prefersDark ? 'dark' : 'light');
+  root.setAttribute('data-theme', initialTheme);
+
+  // 2. Bind toggle button
+  const bindToggle = function() {
+    const btn = document.getElementById('theme-toggle');
+    if (!btn || btn.dataset.bound) return;
+    btn.dataset.bound = 'true';
+    updateToggleIcon();
+    btn.addEventListener('click', function() {
+      const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem(STORAGE_KEY, next);
+      updateToggleIcon();
+    });
+  };
+
+  function updateToggleIcon() {
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    btn.innerHTML = isDark ? '&#9788;' : '&#9789;';
+    btn.title = isDark ? '切换到浅色模式' : '切换到暗夜模式';
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindToggle);
+  } else {
+    bindToggle();
+  }
+})();
